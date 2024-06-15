@@ -1,0 +1,14 @@
+[
+    {
+        "id": "0",
+        "nom": "salade",
+        "prix": "6.21",
+        "img":"farine.png"
+    },
+    {
+        "id": "1",
+        "nom": "tomate",
+        "prix": "8.87",
+        "img":"flash.png"
+    }
+]
