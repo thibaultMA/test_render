@@ -1,37 +1,43 @@
 const pagnier = []
-const SVG_POUBELLE  = `<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z" fill-rule="nonzero"/></svg>`
-function ttt(el) {
+const  SVG_POUBELLE = "<img class='button_poubelle' src=\"img/utils/poubelle.svg\">"
+
+export const commande = []
+window.ttt = function (el) {
     let id = el.getAttribute("cible");
     let div = el.parentNode
     let num = div.querySelector('.num')
+    
     el.setAttribute('checked',"")
     if(num.textContent == " "){
         ajoutePagnier(id,num)
         div.querySelector('.selection').removeAttribute('hidden')
         el.setAttribute('hidden',"")
     }
-    else {
-        enlevePagnier(id,num)
-    }
-
 }
 
-function ajouterProduit(prod) {
+window.ajouterProduit = function (prod) {
     let produit = pagnier.find(e=>e.id==prod.getAttribute("cible"))
     produit.ajout()
+    if (produit.num.innerText == "2") {
+        document.querySelector('#moin-'+produit.id+" > svg").classList.toggle("d-none")
+        document.querySelector('#moin-'+produit.id+" > p").classList.toggle("d-none")
+    }
 }
-function enleverProduit(prod) {
+window.enleverProduit = function (prod) {
+    console.log(prod);
     let produit = pagnier.find(e=>e.id == prod.getAttribute("cible"))
     produit.enleve()
     console.log(produit.num);
-    if (produit.num.textContent == 1) {
-        console.log("moin == poubelle");
-        document.querySelector('#moin-'+produit.id).innerHTML = SVG_POUBELLE
+    if (produit.num.innerText < 2) {
+        document.querySelector('#moin-'+produit.id+" > svg").classList.toggle("d-none")
+        document.querySelector('#moin-'+produit.id+" > p").classList.toggle("d-none")
+
     }
 }
 
 function ajoutePagnier(id,num){
-    pagnier.push(new produitDTO(id,num))
+    let produit = new produitDTO(id,num)
+    pagnier.push(produit)
     range_pagnier()
 }
 
@@ -51,7 +57,7 @@ function range_pagnier() {
     console.log('----------------------------------------');
 }
 
-function submitCommande(){
+window.submitCommande=function (){
 
     let body = JSON.stringify(pagnier.map(e=>e.export()))
     fetch('/api/command',{
@@ -60,33 +66,45 @@ function submitCommande(){
     })
     .then(res=>res.json())
     .then(data => {
-        // Redirection côté client vers /secondPage
-        console.log(data);
-        let d = document.querySelector("#affiche-command");
-        d.innerHTML=""
-        data.produitBody.forEach(el=>{
-            
-            let box = document.createElement('div')
-            let nom = document.createElement('p')
-            let quantite = document.createElement('p')
-            let prix = document.createElement('prix')
-
-            nom.innerText=el.nom
-            quantite.innerText=el.quantite
-            prix.innerText=el.prix
-
-            box.appendChild(nom)
-            box.appendChild(quantite)
-            box.appendChild(prix)
-            d.appendChild(box)
-            })
-            let total = document.createElement('h1')
-            total.innerText = data.total
-            d.appendChild(total)
-
-        // window.location.href = data.url;
+        commande.length =0
+        retourCommande(data);
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        console.log(err)
+        document.querySelector('#resultat_commande').setAttribute('hidden',"")
+    })
+}
+
+function retourCommande(data) {
+    let d = document.querySelector("#affiche-command");
+    d.innerHTML=""
+    data.produitBody.forEach(el => {
+        let box = document.createElement('div');
+        let nom = document.createElement('p');
+        let quantite = document.createElement('p');
+        let prix = document.createElement('prix');
+        console.log(el.quantite);
+        nom.innerText = el.valeur.nom;
+        quantite.innerText = el.quantite;
+        prix.innerText = el.valeur.prix;
+
+        box.appendChild(nom);
+        box.appendChild(quantite);
+        box.appendChild(prix);
+        d.appendChild(box);
+
+        commande.push(formatCommande(el))
+    });
+    console.log(commande);
+    let total = document.createElement('h1')
+    total.innerText = data.total
+    d.appendChild(total)
+    document.querySelector('#resultat_commande').removeAttribute('hidden')
+}
+
+function formatCommande(data) {
+    
+    return{ id: data.valeur.id, quantite: data.quantite }
 }
 
 class produitDTO{

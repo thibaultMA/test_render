@@ -1,10 +1,11 @@
 import express from "express"
 import {routers} from "./routes/router.js"
-import { startCache } from "./controller/cache.js"
+import { sortToCache, startCache } from "./controller/cache.js"
+
 const port = process.env.PORT || 3001;
 startCache()
-export const app = express()
 
+export const app = express()
 app
 .use(express.text())
 .use(express.json())
@@ -14,6 +15,7 @@ app
 .set("view engine","ejs")
 
 .use("/",routers)
+
 
 
 

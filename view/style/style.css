@@ -1,11 +1,11 @@
 body{
     margin: 0;
     padding: 0;
-    width: 600px;
-    height: 100vh;
     border-right: solid;
 }
-
+.d-none{
+    display: none;
+}
 .flex{
     display: flex;
 }
@@ -30,6 +30,8 @@ p{
     /* opacity: 0; */
     pointer-events: none;
 }
-
+.button_poubelle{
+    width: fit-content;
+}
 
 
