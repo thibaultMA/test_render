@@ -1,7 +1,5 @@
-import Logger from "nodemon/lib/utils/log.js";
-import { cache, sortToCache } from "../controller/cache.js";
+import { sortToCache } from "../controller/cache.js";
 import { db } from "../firebase.js";
-import e from "express";
 
 
 const collection_firebase = 'personne';
