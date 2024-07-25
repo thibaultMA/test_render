@@ -2,6 +2,7 @@ const pagnier = []
 const  SVG_POUBELLE = "<img class='button_poubelle' src=\"img/utils/poubelle.svg\">"
 
 export const commande = []
+
 window.ttt = function (el) {
     let id = el.getAttribute("cible");
     let div = el.parentNode
@@ -68,10 +69,11 @@ window.submitCommande=function (){
     .then(data => {
         commande.length =0
         retourCommande(data);
+        document.querySelector('#menu-button').classList.remove('d-none')
     })
     .catch(err=>{
         console.log(err)
-        document.querySelector('#resultat_commande').setAttribute('hidden',"")
+        document.querySelector('#menu-button').classList.add('d-none')
     })
 }
 
@@ -99,7 +101,6 @@ function retourCommande(data) {
     let total = document.createElement('h1')
     total.innerText = data.total
     d.appendChild(total)
-    document.querySelector('#resultat_commande').removeAttribute('hidden')
 }
 
 function formatCommande(data) {
@@ -137,4 +138,11 @@ class produitDTO{
         else enlevePagnier(this.id)
     }
 
+}
+
+
+
+window.toggleMenu=function () {
+    document.getElementById("side-menu").classList.toggle('d-none');
+    document.getElementById("bg-dark").classList.toggle('d-none');
 }

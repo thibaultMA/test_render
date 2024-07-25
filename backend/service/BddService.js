@@ -33,7 +33,6 @@ export async function getAllProduits() {
   
         sortToCache(testBDDD)
         
-        return testBDDD
     })
     return testBDDD
 }
