@@ -1,8 +1,9 @@
 body{
     margin: 0;
     padding: 0;
-    border-right: solid;
 }
+
+
 .d-none{
     display: none;
 }
@@ -12,26 +13,125 @@ body{
 .selection{
     background: #cfcaaa;
 }
+/* header */
 
+#menu-button {
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 1000;
+}
+
+#menu-button div {
+    width: 30px;
+    height: 5px;
+    background-color: black;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
+#side-menu {
+    position: fixed;
+    right: 0;
+    top:0;
+
+    width: 60%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 10;
+}
+#bg-dark{
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgb(99, 99, 99);
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+
+    z-index: 2;
+    pointer-events: unset;
+}
+/* liste */
+#liste_categorie{
+    overflow: scroll;
+    height: 85vh;
+    position: relative;
+}
 .produit{ 
     justify-content: space-between;
-align-items: center;
+    align-items: center;
+    padding: 0 2%;
 }
-.ajout{
-    height: fit-content;
-}
+
 
 /* constant */
 p{
-    margin: 0.5%;padding: 0.5%;
+    margin: 0.5%;
+    padding: 0.5%;
 }
 *[hidden]{
     visibility: hidden;
-    /* opacity: 0; */
     pointer-events: none;
 }
 .button_poubelle{
     width: fit-content;
 }
+.liste_produits{
+    position: relative;
 
+}
+.categorie_titre{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+hr{
+    border: none;
+    height: 3px;
+}
+.hr-produit{
+    background: #f7f7f7;
+}
+.hr-categorie{
+    background: #bcbcbc;
+}
+.description{
+ 
+}
+.produit-description{
+    text-wrap: balance;
+    color: rgb(151, 151, 151);
+}
+.img_block{
+    position: relative;
+    width: fit-content;
+}
+.ajout{
+    position: absolute;
+    bottom: 10%;
+    right: 1%;
+}
+.fixed_footer{
 
+    height: 4vh;
+}
+.fixed_bottom_button{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 6%;
+    background: yellow;
+}
+.fixed_bottom_button > button{
+    height: 100%;
+    width: 100%;
+    background: none;
+    border: none;
+}

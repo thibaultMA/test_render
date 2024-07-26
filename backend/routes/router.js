@@ -6,9 +6,16 @@ import { checkBody } from "../middleware/checkBody.js";
 export const routers = express.Router()
 
 .get("/",(req,res)=>{
-    // console.log(cache);
     res.render("tt",{"toto":cache,"title":"titre"})
 })
+.get("/plein",(req,res)=>{
+    cache.entree.push(cache.entree[0])
+    cache.plats.push(cache.plats[0])
+    cache.dessert.push(cache.dessert[0])
+ 
+    res.render("tt",{"toto":cache,"title":"titre"})
+})
+
 .get('/confirm',(req,res)=>{
     res.render("confirm",)
 })

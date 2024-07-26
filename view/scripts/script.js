@@ -2,6 +2,7 @@ const pagnier = []
 const  SVG_POUBELLE = "<img class='button_poubelle' src=\"img/utils/poubelle.svg\">"
 
 export const commande = []
+
 window.ttt = function (el) {
     let id = el.getAttribute("cible");
     let div = el.parentNode
@@ -68,10 +69,11 @@ window.submitCommande=function (){
     .then(data => {
         commande.length =0
         retourCommande(data);
+        document.querySelector('#menu-button').classList.remove('d-none')
     })
     .catch(err=>{
         console.log(err)
-        document.querySelector('#resultat_commande').setAttribute('hidden',"")
+        document.querySelector('#menu-button').classList.add('d-none')
     })
 }
 
@@ -81,15 +83,20 @@ function retourCommande(data) {
     data.produitBody.forEach(el => {
         let box = document.createElement('div');
         let nom = document.createElement('p');
-        let quantite = document.createElement('p');
+        let quantite = document.createElement('span');
         let prix = document.createElement('prix');
-        console.log(el.quantite);
+        
         nom.innerText = el.valeur.nom;
-        quantite.innerText = el.quantite;
-        prix.innerText = el.valeur.prix;
+        quantite.innerText = " x"+el.quantite;
+        prix.innerText = el.valeur.prix + " €";
 
+        quantite.classList.add("commande-quantite")
+        nom.classList.add("commande-nom")
+        prix.classList.add("commande-prix")
+
+        nom.appendChild(quantite);
+        
         box.appendChild(nom);
-        box.appendChild(quantite);
         box.appendChild(prix);
         d.appendChild(box);
 
@@ -97,9 +104,8 @@ function retourCommande(data) {
     });
     console.log(commande);
     let total = document.createElement('h1')
-    total.innerText = data.total
+    total.innerText = "total : "+data.total
     d.appendChild(total)
-    document.querySelector('#resultat_commande').removeAttribute('hidden')
 }
 
 function formatCommande(data) {
@@ -137,4 +143,11 @@ class produitDTO{
         else enlevePagnier(this.id)
     }
 
+}
+
+
+
+window.toggleMenu=function () {
+    document.getElementById("side-menu").classList.toggle('d-none');
+    document.getElementById("bg-dark").classList.toggle('d-none');
 }

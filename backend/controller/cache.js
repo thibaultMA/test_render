@@ -30,6 +30,7 @@ export async function sortToCache(item) {
     }
     cache = sortedCollection
 }
+
 export function findInCache(id) {
     let cible;
     for (const key in cache) {
