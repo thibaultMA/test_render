@@ -83,15 +83,20 @@ function retourCommande(data) {
     data.produitBody.forEach(el => {
         let box = document.createElement('div');
         let nom = document.createElement('p');
-        let quantite = document.createElement('p');
+        let quantite = document.createElement('span');
         let prix = document.createElement('prix');
-        console.log(el.quantite);
+        
         nom.innerText = el.valeur.nom;
-        quantite.innerText = el.quantite;
-        prix.innerText = el.valeur.prix;
+        quantite.innerText = " x"+el.quantite;
+        prix.innerText = el.valeur.prix + " €";
 
+        quantite.classList.add("commande-quantite")
+        nom.classList.add("commande-nom")
+        prix.classList.add("commande-prix")
+
+        nom.appendChild(quantite);
+        
         box.appendChild(nom);
-        box.appendChild(quantite);
         box.appendChild(prix);
         d.appendChild(box);
 
@@ -99,7 +104,7 @@ function retourCommande(data) {
     });
     console.log(commande);
     let total = document.createElement('h1')
-    total.innerText = data.total
+    total.innerText = "total : "+data.total
     d.appendChild(total)
 }
 

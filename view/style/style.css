@@ -33,16 +33,16 @@ body{
     transition: all 0.3s ease-in-out;
 }
 #side-menu {
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top:0;
+
     width: 60%;
-    height: 100%;
+    height: 100vh;
     background-color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 20px;
-    z-index: 999;
+    z-index: 10;
 }
 #bg-dark{
     height: 100vh;
@@ -50,7 +50,7 @@ body{
 
     background-color: rgb(99, 99, 99);
     opacity: 0.5;
-    position: absolute;
+    position: fixed;
     top: 0;
 
     z-index: 2;

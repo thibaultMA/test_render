@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <script type="module" src="scripts/script.js" defer></script>
+    <script type="module" src="scripts/script.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="module" src="scripts/stripe.js"></script>
     <title>Document</title>
@@ -71,7 +71,7 @@
         </div>
     </section>
     <div class="fixed_bottom_button">
-        <button type="submit" onclick="submitCommande()">voir mon panier</button>
+        <button type="submit" onclick="submitCommande(),toggleMenu()" >voir mon panier</button>
     </div>
     <div class="fixed_footer">
     </div>
