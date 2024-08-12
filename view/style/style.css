@@ -1,17 +1,19 @@
+:root {
+    --main-bg-color: yellow;
+    --main-border-rad: 20px;
+  }
+  
 body{
     margin: 0;
     padding: 0;
 }
-
-
-.d-none{
-    display: none;
+header{
+    height: 10vh;
 }
+
+
 .flex{
     display: flex;
-}
-.selection{
-    background: #cfcaaa;
 }
 /* header */
 
@@ -44,18 +46,19 @@ body{
     padding: 20px;
     z-index: 10;
 }
-#bg-dark{
-    height: 100vh;
-    width: 100vw;
-
-    background-color: rgb(99, 99, 99);
-    opacity: 0.5;
-    position: fixed;
-    top: 0;
-
-    z-index: 2;
-    pointer-events: unset;
+.choix-quantite{
+    background: var(--main-bg-color);
+    border: none;
+    font-size: 1.4rem;
+    border-radius: 20px;
 }
+.moin{
+    width: 1.4rem;
+}
+.num{
+    width: 1rem;
+}
+
 /* liste */
 #liste_categorie{
     overflow: scroll;
@@ -87,7 +90,7 @@ p{
 }
 .categorie_titre{
     position: sticky;
-    top: 0;
+    top: -1px;
     background-color: #fff;
     z-index: 1;
 }
@@ -112,26 +115,47 @@ hr{
     position: relative;
     width: fit-content;
 }
-.ajout{
+.ajout {
     position: absolute;
     bottom: 10%;
-    right: 1%;
+    right: 5%;
+    justify-content: flex-end;
+    border-radius: var(--main-border-rad);
+        background: #cfcaaa;
+    
 }
 .fixed_footer{
 
     height: 4vh;
 }
 .fixed_bottom_button{
+    z-index: 2;
     position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
-    height: 6%;
-    background: yellow;
+    height: 5vh;
+    background: var(--main-bg-color);
 }
 .fixed_bottom_button > button{
     height: 100%;
     width: 100%;
     background: none;
     border: none;
+}
+#bg-dark{
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgb(99, 99, 99);
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+
+    z-index: 2;
+    pointer-events: unset;
+}
+
+.d-none{
+    display: none;
 }
