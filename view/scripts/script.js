@@ -181,6 +181,5 @@ window.payement =function () {
     location.assign('/payement?commande='+JSON.stringify(pagnier))
 }
 
-//TODO suprimer apres teste
-
-document.querySelectorAll(".boutton-plus.plus.choix-quantite").forEach(e=>e.click())
+//TODO suprimer après teste
+// document.querySelectorAll(".boutton-plus.plus.choix-quantite").forEach(e=>e.click())
