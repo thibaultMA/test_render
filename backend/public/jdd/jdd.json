@@ -1,0 +1,26 @@
+{
+    "entree": [
+      {
+        "img": "flash.png",
+        "prix": "2.70",
+        "nom": "jambon",
+        "id": "PMu8WwOJV2z5nD26c3Eu"
+      }
+    ],
+    "plats": [
+      {
+        "nom": "salade",
+        "prix": "2.50",
+        "img": "farine.png",
+        "id": "hru9ERa0Y5nwyzXTNoeX"
+      }
+    ],
+    "Dessert": [
+      {
+        "img": "flash.png",
+        "prix": "4.20",
+        "nom": "tomate",
+        "id": "jkUNYmu6u0ZVKnnkzaIL"
+      }
+    ]
+  }
