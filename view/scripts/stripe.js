@@ -1,14 +1,14 @@
-import { commande } from "./script.js";
-
 const stripe = Stripe("pk_test_51PXOvV2NiETwuA3Lvh7ciMFLPYrJO2fNTXEEVfraNn4lBcZt98HKbEAHpZZpbxcK0Uf7KleLZllQ3GK0yOtHJXDP00C2A5CeD9");
 
 // Create a Checkout Session
-window.initialize = async function () {
+async function initialize () {
+  const commande = new URLSearchParams(window.location.search).get('commande');
+
   const fetchClientSecret = async () => {
     
     const response = await fetch("/api/create-checkout-session", {
       method: "POST",
-      body:JSON.stringify(commande)
+      body:commande
     });
     const { clientSecret } = await response.json();
     return clientSecret;
@@ -17,8 +17,9 @@ window.initialize = async function () {
     fetchClientSecret,
   });
 
-//   Mount Checkout
+// //   Mount Checkout
   checkout.mount('#checkout');
 
 }
 
+initialize()

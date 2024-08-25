@@ -4,7 +4,7 @@ import { findInCache } from "../../controller/cache.js"
 import { throwCustomMessage } from "../../utils/error.js";
 import { stripeCekoutSessionCreate, stripeCekoutSessionRetrive } from "../../controller/stripeController.js";
 
-export const apiRouter = express.Router()
+export const apiRouter   = express.Router()
 
 
 
@@ -26,7 +26,6 @@ export const apiRouter = express.Router()
     res.json({
         total,produitBody
     })
-    // res.redirect('/confirm')
 })
 
 .post('/create-checkout-session', async (req, res) => {
@@ -62,5 +61,4 @@ export const apiRouter = express.Router()
         status: session.status,
         customer_email: session.customer_details.email
     });
-});
- 
+})

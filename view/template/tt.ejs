@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
     <script type="module" src="scripts/script.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script type="module" src="scripts/stripe.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -24,7 +22,7 @@
 
     <section id="liste_categorie">
         <% Object.keys(toto).forEach(categorie => { %>
-            <div id="liste_produits">
+            <div class="liste_produits">
                
                 <div class="categorie_titre">
                     <h2><%= categorie %></h2>
@@ -35,8 +33,10 @@
                         <div class="produit-info flex">
                             <div class="description">
                                 <b class="produit-nom"><%- element.nom %></b>
-                                <p class="produit-description">ce long texte est la pour decrire le produit sur le quel il est assignerce long texte est la pour decrire le produit sur le quel il est assignerce long texte est la pour decrire le produit sur le quel il est assigner</p>
-                                <p class="produit-prix"><%- element.prix %></p>
+                                <p class="produit-description">
+                                    ce long texte est la pour decrire le produit sur le quel il est assignerce 
+                                                                </p>
+                                <p class="produit-prix"><%- element.prix %> €</p>
                             </div>
                         </div>
                         <div class="img_block">
@@ -62,17 +62,18 @@
         <% }) %>
     </section>
     <section id="side-menu" class="d-none">
-        <h2>command</h2>
-        <div id="affiche-command" >
-            
+        <h2>Commande</h2>
+        <div class="content-commande flex">
+            <div id="affiche-command" >
+            </div>
+            <div class="paybox">
+                <button onclick="payement   ()">payer</button>
+            </div>
         </div>
-        <button onclick="initialize()">paayer</button>
-        <div id="checkout">
-          <!-- Checkout will insert the payment form here -->
-        </div>
+
     </section>
     <div class="fixed_bottom_button">
-        <button type="submit" onclick="submitCommande(),toggleMenu()" >voir mon panier</button>
+        <button id="affiche-command-button" type="submit" onclick="submitCommande(),toggleMenu()" disabled >voir mon panier</button>
     </div>
 
     <div id="bg-dark" class="d-none" onclick="toggleMenu()"></div>

@@ -1,5 +1,5 @@
 :root {
-    --main-bg-color: yellow;
+    --main-bg-color: #ffd100;
     --main-border-rad: 20px;
   }
   
@@ -46,6 +46,11 @@ header{
     padding: 20px;
     z-index: 10;
 }
+.content-commande{
+    flex-direction: column;
+    height: 84%;
+    justify-content: space-between;*
+}
 .choix-quantite{
     background: var(--main-bg-color);
     border: none;
@@ -57,6 +62,8 @@ header{
 }
 .num{
     width: 1rem;
+    padding: 6%;
+    font-weight: bold;
 }
 
 /* liste */
@@ -86,7 +93,6 @@ p{
 }
 .liste_produits{
     position: relative;
-
 }
 .categorie_titre{
     position: sticky;
@@ -121,7 +127,7 @@ hr{
     right: 5%;
     justify-content: flex-end;
     border-radius: var(--main-border-rad);
-        background: #cfcaaa;
+    background: var(--main-bg-color);
     
 }
 .fixed_footer{
@@ -134,7 +140,7 @@ hr{
     bottom: 0;
     right: 0;
     left: 0;
-    height: 5vh;
+    height: 6vh;
     background: var(--main-bg-color);
 }
 .fixed_bottom_button > button{

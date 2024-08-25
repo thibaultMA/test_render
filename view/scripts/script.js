@@ -32,6 +32,10 @@ window.enleverProduit = function (prod) {
         document.querySelector('#moin-'+produit.id+" > svg").classList.remove("d-none")
         document.querySelector('#moin-'+produit.id+" > p").classList.add("d-none")
     }
+    if (pagnier.length == 0) {
+        togglebutton(false)
+
+    }
 }
 
 function ajoutePagnier(id,num){
@@ -66,6 +70,12 @@ function ajoutePagnier(id,num){
 function range_pagnier() {
     pagnier.sort((a,b)=>Number.parseInt(a.id)-Number.parseInt(b.id)) 
     pagnier.forEach(a=> console.log(a))
+    pagnier.length > 0 ? togglebutton(true): null
+    // if (pagnier.length > 0) {
+    //     togglebutton(true)
+    // }else{
+    //     togglebutton(false)
+    // }
     console.log('----------------------------------------');
 }
 
@@ -86,6 +96,16 @@ window.submitCommande=function (){
         console.log(err)
         document.querySelector('#menu-button').classList.add('d-none')
     })
+}
+
+function togglebutton(onoff) { 
+    const buttonCommande = document.querySelector('#affiche-command-button');
+    if (onoff) {
+            
+        buttonCommande.removeAttribute("disabled")
+    } else {
+        buttonCommande.setAttribute("disabled",onoff)
+    }
 }
 
 function retourCommande(data) {
@@ -115,7 +135,7 @@ function retourCommande(data) {
     });
     console.log(commande);
     let total = document.createElement('h1')
-    total.innerText = "total : "+data.total
+    total.innerText = "Total : "+data.total+" €"
     d.appendChild(total)
 }
 
@@ -152,7 +172,15 @@ class produitDTO{
 
 }
 
-window.toggleMenu=function () {
+window.toggleMenu = function () {
     document.getElementById("side-menu").classList.toggle('d-none');
     document.getElementById("bg-dark").classList.toggle('d-none');
 }
+
+window.payement =function () {
+    location.assign('/payement?commande='+JSON.stringify(pagnier))
+}
+
+//TODO suprimer apres teste
+
+document.querySelectorAll(".boutton-plus.plus.choix-quantite").forEach(e=>e.click())
