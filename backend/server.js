@@ -1,9 +1,10 @@
 import express from "express"
 import {routers} from "./routes/router.js"
-import { sortToCache, startCache } from "./controller/cache.js"
+import { cache, sortToCache, startCache, startCacheFromFile } from "./controller/cache.js"
 
 const port = process.env.PORT || 3001;
 startCache()
+// startCacheFromFile()
 
 export const app = express()
 app

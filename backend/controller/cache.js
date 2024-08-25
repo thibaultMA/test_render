@@ -2,6 +2,8 @@ import path,{dirname} from "path"
 import { fileURLToPath } from "url"
 import { Produit } from "../models/Produit.js"
 import { getAllProduits } from "../service/BddService.js"
+import { fstat, readFile, readFileSync } from "fs"
+import { log } from "console"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
@@ -12,7 +14,14 @@ export async function startCache() {
 
     cache = await getAllProduits()
     console.log("le cache à bien été lancer ");
-    
+
+   
+}
+export async function startCacheFromFile() { 
+    let file = JSON.parse(readFileSync('./backend/public/jdd/jdd.json', 'utf8'))
+
+    cache = file
+    console.log("le cache à bien été lancer ");
 }
 
 export async function sortToCache(item) { 
@@ -30,6 +39,7 @@ export async function sortToCache(item) {
     }
     cache = sortedCollection
 }
+
 export function findInCache(id) {
     let cible;
     for (const key in cache) {
